@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "03e67738-850c-466f-bd8d-c05c6d4086a6",
+		"name": "Inventory API",
+		"description": "Postman collection for Inventory API endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45339237",
+		"_collection_link": "https://dark-star-107812.postman.co/workspace/My-Workspace~8fd1e172-ab79-4d76-8e26-aca956791652/collection/45339237-03e67738-850c-466f-bd8d-c05c6d4086a6?action=share&source=collection_link&creator=45339237"
+	},
+	"item": [
+		{
+			"name": "Get All Products",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product By ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/products/:productId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						":productId"
+					],
+					"variable": [
+						{
+							"key": "productId"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"productId\": \"123\",\n  \"productName\": \"Sample Product\",\n  \"sku\": \"SKU123\",\n  \"unitOfMeasure\": \"pcs\",\n  \"cost\": 10.50,\n  \"salePrice\": 15.00,\n  \"category\": \"Electronics\",\n  \"location\": \"Warehouse A\",\n  \"active\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"productName\": \"Updated Product\",\n  \"sku\": \"SKU123\",\n  \"unitOfMeasure\": \"pcs\",\n  \"cost\": 12.00,\n  \"salePrice\": 18.00,\n  \"category\": \"Electronics\",\n  \"location\": \"Warehouse B\",\n  \"active\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/products/:productId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						":productId"
+					],
+					"variable": [
+						{
+							"key": "productId"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/products/:productId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						":productId"
+					],
+					"variable": [
+						{
+							"key": "productId"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
