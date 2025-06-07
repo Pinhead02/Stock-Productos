@@ -16,6 +16,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0VXNlciIsImlhdCI6MTc0OTMyMzM3MiwiZXhwIjoxNzQ5MzI2OTcyfQ.MO8coaKV2Um0xVb4iRUdCtawpjMn3ESalLNF4ta3gR0",
+						"type": "text"
 					}
 				],
 				"url": {
@@ -27,6 +32,13 @@
 					"port": "8080",
 					"path": [
 						"products"
+					],
+					"query": [
+						{
+							"key": "authorization",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0VXNlciIsImlhdCI6MTc0OTMxMTA2MCwiZXhwIjoxNzQ5MzE0NjYwfQ.yh_0fCVSocM_fyMHlykLpchMp3AbIaxl-sIT9QBZusE",
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -148,6 +160,35 @@
 					"variable": [
 						{
 							"key": "productId"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Loggin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/login?user=testUser&encryptedPass=testPass",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "testUser"
+						},
+						{
+							"key": "encryptedPass",
+							"value": "testPass"
 						}
 					]
 				}
