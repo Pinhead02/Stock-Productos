@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PredictorStockRepository extends JpaRepository<PredictorStockEntity, java.sql.Date> {
+public interface PredictorStockRepository extends JpaRepository<PredictorStockEntity, Long> {
     // Custom query methods can be added here if needed
 }

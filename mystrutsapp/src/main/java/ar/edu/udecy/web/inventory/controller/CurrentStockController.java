@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface CurrentStockController {
     List<CurrentStockDTO> getAllCurrentStock();
-    CurrentStockDTO getCurrentStockById(String productId);
+    CurrentStockDTO getCurrentStockById(Long productId);
     CurrentStockDTO createCurrentStock(CurrentStockDTO currentStockDTO);
-    CurrentStockDTO updateCurrentStock(String productId, CurrentStockDTO currentStockDTO);
-    void deleteCurrentStock(String productId);
+    CurrentStockDTO updateCurrentStock(Long productId, CurrentStockDTO currentStockDTO);
+    void deleteCurrentStock(Long productId);
 }

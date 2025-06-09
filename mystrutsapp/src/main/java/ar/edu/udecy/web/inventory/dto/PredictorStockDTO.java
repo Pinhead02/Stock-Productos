@@ -11,9 +11,10 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PredictorStockDTO {
+    private Long id;
     private Date date;
     private String productId;
-    private int unitsSold;
+    private Integer unitsSold;
     private BigDecimal avgSalePrice;
     private boolean promotionActive;
     private String specialEvent;

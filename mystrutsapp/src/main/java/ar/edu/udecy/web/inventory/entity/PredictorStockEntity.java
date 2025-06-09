@@ -15,19 +15,22 @@ package ar.edu.udecy.web.inventory.entity;
         @AllArgsConstructor
         public class PredictorStockEntity {
             @Id
-            @Column(name = "date", nullable = false)
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
+            private Long id;
+
+            @Column(name = "date")
             private Date date;
 
-            @Column(name = "product_id", nullable = false)
+            @Column(name = "product_id")
             private String productId;
 
-            @Column(name = "units_sold", nullable = false)
-            private int unitsSold;
+            @Column(name = "units_sold")
+            private Integer unitsSold;
 
-            @Column(name = "avg_sale_price", nullable = false)
+            @Column(name = "avg_sale_price")
             private BigDecimal avgSalePrice;
 
-            @Column(name = "promotion_active", nullable = false)
+            @Column(name = "promotion_active")
             private boolean promotionActive;
 
             @Column(name = "special_event")

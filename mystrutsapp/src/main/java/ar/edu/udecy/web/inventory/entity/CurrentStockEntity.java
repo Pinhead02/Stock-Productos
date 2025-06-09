@@ -1,29 +1,32 @@
 package ar.edu.udecy.web.inventory.entity;
 
-    import jakarta.persistence.*;
-    import lombok.AllArgsConstructor;
-    import lombok.Data;
-    import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    import java.math.BigDecimal;
-    import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
-    @Entity
-    @Table(name = "current_stock")
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public class CurrentStockEntity {
-        @Id
-        @Column(name = "product_id", nullable = false)
-        private String productId;
+@Entity
+@Table(name = "current_stock")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class CurrentStockEntity {
 
-        @Column(name = "quantity", nullable = false)
-        private int quantity;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-        @Column(name = "last_updated", nullable = false)
-        private Timestamp lastUpdated;
+    @Column(name = "product_id" )
+    private String productId;
 
-        @Column(name = "total_inventory_cost", nullable = false)
-        private BigDecimal totalInventoryCost;
-    }
+    @Column(name = "quantity" )
+    private Integer quantity;
+
+    @Column(name = "last_updated")
+    private LocalDateTime lastUpdated;
+
+    @Column(name = "total_inventory_cost")
+    private Double totalInventoryCost;
+}

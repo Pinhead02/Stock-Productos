@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface PredictorStockService {
     List<PredictorStockDTO> findAll();
-    PredictorStockDTO findByDate(Date date);
+    PredictorStockDTO findById(Long id);
     PredictorStockDTO save(PredictorStockDTO predictorStockDTO);
-    PredictorStockDTO update(Date date, PredictorStockDTO predictorStockDTO);
-    void deleteByDate(Date date);
+    PredictorStockDTO update(Long id, PredictorStockDTO predictorStockDTO);
+    void deleteById(Long id);
 }

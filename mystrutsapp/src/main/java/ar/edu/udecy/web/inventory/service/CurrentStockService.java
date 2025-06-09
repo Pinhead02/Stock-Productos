@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface CurrentStockService {
     List<CurrentStockDTO> findAll();
-    CurrentStockDTO findById(String id);
+    CurrentStockDTO findById(Long id);
     CurrentStockDTO save(CurrentStockDTO currentStockDTO);
-    CurrentStockDTO update(String id, CurrentStockDTO currentStockDTO);
-    void deleteById(String id);
+    CurrentStockDTO update(Long id, CurrentStockDTO currentStockDTO);
+    void deleteById(Long id);
 }

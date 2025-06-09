@@ -1,9 +1,7 @@
 package ar.edu.udecy.web.inventory.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Timestamp;
 
@@ -12,21 +10,23 @@ import java.sql.Timestamp;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@EqualsAndHashCode
 public class InventoryMovementEntity {
     @Id
     @Column(name = "movement_id", nullable = false)
     private String movementId;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date")
     private Timestamp date;
 
-    @Column(name = "product_id", nullable = false)
+    @Column(name = "product_id")
     private String productId;
 
-    @Column(name = "movement_type", nullable = false)
+    @Column(name = "movement_type")
     private String movementType;
 
-    @Column(name = "quantity", nullable = false)
+    @Column(name = "quantity")
     private int quantity;
 
     @Column(name = "order_id")

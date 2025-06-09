@@ -23,7 +23,7 @@ public class CurrentStockControllerImpl implements CurrentStockController {
 
     @Override
     @GetMapping("/{productId}")
-    public CurrentStockDTO getCurrentStockById(@PathVariable String productId) {
+    public CurrentStockDTO getCurrentStockById(@PathVariable Long productId) {
         return currentStockService.findById(productId);
     }
 
@@ -35,13 +35,13 @@ public class CurrentStockControllerImpl implements CurrentStockController {
 
     @Override
     @PutMapping("/{productId}")
-    public CurrentStockDTO updateCurrentStock(@PathVariable String productId, @RequestBody CurrentStockDTO currentStockDTO) {
+    public CurrentStockDTO updateCurrentStock(@PathVariable Long productId, @RequestBody CurrentStockDTO currentStockDTO) {
         return currentStockService.update(productId, currentStockDTO);
     }
 
     @Override
     @DeleteMapping("/{productId}")
-    public void deleteCurrentStock(@PathVariable String productId) {
+    public void deleteCurrentStock(@PathVariable Long productId) {
         currentStockService.deleteById(productId);
     }
 }

@@ -1,178 +1,762 @@
 {
 	"info": {
-		"_postman_id": "03e67738-850c-466f-bd8d-c05c6d4086a6",
-		"name": "Inventory API",
-		"description": "Postman collection for Inventory API endpoints",
+		"_postman_id": "10f04005-4bd5-4638-a772-08bb54191b2a",
+		"name": "ProductosInvetory",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "45339237",
-		"_collection_link": "https://dark-star-107812.postman.co/workspace/My-Workspace~8fd1e172-ab79-4d76-8e26-aca956791652/collection/45339237-03e67738-850c-466f-bd8d-c05c6d4086a6?action=share&source=collection_link&creator=45339237"
+		"_collection_link": "https://dark-star-107812.postman.co/workspace/My-Workspace~8fd1e172-ab79-4d76-8e26-aca956791652/collection/45339237-10f04005-4bd5-4638-a772-08bb54191b2a?action=share&source=collection_link&creator=45339237"
 	},
 	"item": [
 		{
-			"name": "Get All Products",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
+			"name": "CurrentStock",
+			"item": [
+				{
+					"name": "Get All Current Stock",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/current-stock",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"current-stock"
+							]
+						}
 					},
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0VXNlciIsImlhdCI6MTc0OTMyMzM3MiwiZXhwIjoxNzQ5MzI2OTcyfQ.MO8coaKV2Um0xVb4iRUdCtawpjMn3ESalLNF4ta3gR0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8080/products",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"products"
-					],
-					"query": [
-						{
-							"key": "authorization",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0VXNlciIsImlhdCI6MTc0OTMxMTA2MCwiZXhwIjoxNzQ5MzE0NjYwfQ.yh_0fCVSocM_fyMHlykLpchMp3AbIaxl-sIT9QBZusE",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Product By ID",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8080/products/:productId",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"products",
-						":productId"
-					],
-					"variable": [
-						{
-							"key": "productId"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Product",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"productId\": \"123\",\n  \"productName\": \"Sample Product\",\n  \"sku\": \"SKU123\",\n  \"unitOfMeasure\": \"pcs\",\n  \"cost\": 10.50,\n  \"salePrice\": 15.00,\n  \"category\": \"Electronics\",\n  \"location\": \"Warehouse A\",\n  \"active\": true\n}"
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/products",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"products"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update Product",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"productName\": \"Updated Product\",\n  \"sku\": \"SKU123\",\n  \"unitOfMeasure\": \"pcs\",\n  \"cost\": 12.00,\n  \"salePrice\": 18.00,\n  \"category\": \"Electronics\",\n  \"location\": \"Warehouse B\",\n  \"active\": true\n}"
+				{
+					"name": "Get Current Stock By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/current-stock/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"current-stock",
+								"2"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/products/:productId",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"products",
-						":productId"
-					],
-					"variable": [
-						{
-							"key": "productId"
+				{
+					"name": "Create Current Stock",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"productId\": \"P001\",\n    \"quantity\": 10,\n    \"lastUpdated\": \"2023-10-01T12:00:00\",\n    \"totalInventoryCost\": 150.75\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/current-stock",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"current-stock"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Update Current Stock",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\": \"P002\",\n    \"quantity\": 150,\n    \"lastUpdated\": \"2025-06-09T03:49:30.939742\",\n    \"totalInventoryCost\": 150.75\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/current-stock/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"current-stock",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Current Stock",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/current-stock/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"current-stock",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Delete Product",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8080/products/:productId",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"products",
-						":productId"
-					],
-					"variable": [
-						{
-							"key": "productId"
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get All Products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0OTQzNzk1NCwiZXhwIjoxNzQ5NDQxNTU0fQ.OL_K5EG2zxtRKlEOsS0Iu0_GqmirD1mT68Uu6s3VfYY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/products/P001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"P001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {     \"productId\": \"P005\",\n        \"productName\": \"Product B\",\n        \"sku\": \"SKU002\",\n        \"unitOfMeasure\": \"Unit\",\n        \"cost\": 100.00,\n        \"salePrice\": 150.00,\n        \"category\": \"Category B\",\n        \"location\": \"Location B\",\n        \"active\": true\n  }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category\": \"Category UPDATE\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/products/P001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"P001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/products/P001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"P001"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "inventory movement",
+			"item": [
+				{
+					"name": "Get All Inventory Movements",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/inventory-movement",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inventory-movement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Inventory Movement By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/inventory-movement/M001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inventory-movement",
+								"M001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Inventory Movement",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"movementId\": \"M001\",\n  \"date\": \"2025-06-09\",\n    \"productId\": \"P001\",\n  \"movementType\": \"s\",\n  \"quantity\": 0,\n  \"orderId\": \"\",\n  \"notes\": \"\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/inventory-movement",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inventory-movement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Inventory Movement",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date\": \"2025-06-09\",\n    \"productId\": \"P002\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/inventory-movement/M001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inventory-movement",
+								"M001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Inventory Movement",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/inventory-movement/M001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inventory-movement",
+								"M001"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "predicator stock",
+			"item": [
+				{
+					"name": "Get All PredictorStocks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/predictor-stocks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"predictor-stocks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get PredictorStock By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/predictor-stocks/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"predictor-stocks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create PredictorStock",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"date\": \"2023-10-01T00:00:00Z\",\n    \"productId\": \"P001\",\n    \"unitsSold\": 100,\n    \"avgSalePrice\": 29.99,\n    \"promotionActive\": true,\n    \"specialEvent\": \"Black Friday\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/predictor-stocks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"predictor-stocks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update PredictorStock",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date\": \"2023-10-02\",\n  \"promotionActive\": false,\n  \"specialEvent\": \"None\",\n      \"productId\": \"P002\"\n\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/predictor-stocks/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"predictor-stocks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete PredictorStock",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/predictor-stocks/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"predictor-stocks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Loggin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData;\r",
+							"\r",
+							"try {\r",
+							"    jsonData = pm.response.json();\r",
+							"    if (jsonData.token) {\r",
+							"        let currentToken = pm.environment.get(\"token\");\r",
+							"        if (!currentToken) { \r",
+							"            pm.environment.set(\"token\", jsonData.token);\r",
+							"            console.log(\"✅ Token guardado correctamente:\", jsonData.token);\r",
+							"        } else {\r",
+							"            console.log(\"⚠️ La variable 'token' ya existe en el entorno:\", currentToken);\r",
+							"        }\r",
+							"    } else {\r",
+							"        console.log(\"❌ No se encontró 'token' en la respuesta.\");\r",
+							"    }\r",
+							"} catch (error) {\r",
+							"    console.log(\"🚨 Error al procesar JSON:\", error);\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"username\": \"user1\",\r\n    \"password\": \"password1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/login?user=testUser&encryptedPass=testPass",
+					"raw": "http://localhost:8080/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -183,12 +767,14 @@
 					],
 					"query": [
 						{
-							"key": "user",
-							"value": "testUser"
+							"key": "username",
+							"value": "user1",
+							"disabled": true
 						},
 						{
-							"key": "encryptedPass",
-							"value": "testPass"
+							"key": "password",
+							"value": "password1",
+							"disabled": true
 						}
 					]
 				}

@@ -1,43 +1,47 @@
 package ar.edu.udecy.web.inventory.entity;
 
-    import jakarta.persistence.*;
-    import lombok.AllArgsConstructor;
-    import lombok.Data;
-    import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
 
-    import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    @Entity
-    @Table(name = "product")
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public class ProductEntity {
-        @Id
-        @Column(name = "product_id", nullable = false)
-        private String productId;
+import java.math.BigDecimal;
 
-        @Column(name = "product_name", nullable = false)
-        private String productName;
+@Entity
+@Table(name = "product")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class ProductEntity {
 
-        @Column(name = "sku", nullable = false)
-        private String sku;
+    @Id
+    @Column(name = "product_id",  nullable = false, unique = true)
+    private String productId;
 
-        @Column(name = "unit_of_measure", nullable = false)
-        private String unitOfMeasure;
+    @Column(name = "product_name", nullable = false)
+    private String productName;
 
-        @Column(name = "cost", nullable = false)
-        private BigDecimal cost;
+    @Column(name = "sku")
+    private String sku;
 
-        @Column(name = "sale_price", nullable = false)
-        private BigDecimal salePrice;
+    @Column(name = "unit_of_measure")
+    private String unitOfMeasure;
 
-        @Column(name = "category", nullable = false)
-        private String category;
+    @Column(name = "cost")
+    private BigDecimal cost;
 
-        @Column(name = "location", nullable = false)
-        private String location;
+    @Column(name = "sale_price")
+    private BigDecimal salePrice;
 
-        @Column(name = "active", nullable = false)
-        private boolean active;
-    }
+    @Column(name = "category")
+    private String category;
+
+    @Column(name = "location")
+    private String location;
+
+    @Column(name = "active")
+    private boolean active;
+}
