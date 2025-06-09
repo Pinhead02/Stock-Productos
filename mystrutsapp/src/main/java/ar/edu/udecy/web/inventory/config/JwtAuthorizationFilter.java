@@ -6,6 +6,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.Key;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
@@ -40,10 +44,10 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         String token = request.getHeader(header);
 
-            if (token == null || !token.startsWith(prefix)) {
-                chain.doFilter(request, response);
-                return;
-            }
+        if (token == null || !token.startsWith(prefix)) {
+            chain.doFilter(request, response);
+            return;
+        }
         validateToken(token.replace(prefix, ""));
         chain.doFilter(request, response);
     }
@@ -57,15 +61,20 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                     .getBody();
 
             String username = claims.getSubject();
+            List<String> roles = claims.get("roles", ArrayList.class);
+
             if (username != null) {
-                User authUser = new User(username, "", new ArrayList<>());
+                List<SimpleGrantedAuthority> authorities = roles.stream()
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList());
+                User authUser = new User(username, "", authorities);
                 SecurityContextHolder.getContext().setAuthentication(
                         new UsernamePasswordAuthenticationToken(authUser, null, authUser.getAuthorities()));
             }
-        } catch (io.jsonwebtoken.MalformedJwtException e) {
-            throw new TokenInvalidException("Invalid token: Malformed JWT");
         } catch (Exception e) {
             throw new TokenInvalidException("Invalid token: " + e.getMessage());
         }
     }
+
+
 }

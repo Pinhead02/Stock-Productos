@@ -7,12 +7,19 @@ import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 @Component
 public class JwtUtil {
     private static final String SECRET_KEY_STRING = "mySuperSecretKeyWithAtLeast32Characters";
-    private static final Key SECRET_KEY = Keys.hmacShaKeyFor(SECRET_KEY_STRING.getBytes());    public String generateToken(String username) {
+    private static final Key SECRET_KEY = Keys.hmacShaKeyFor(SECRET_KEY_STRING.getBytes());
+    public String generateToken(String username, Set<String> roles) {
+        Map<String, Object> claims = Map.of("roles", roles);
         return Jwts.builder()
                 .setSubject(username)
+                .claim("roles", roles) // Agregar los roles como un claim
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // Expira en 1 hora
                 .signWith(SECRET_KEY)

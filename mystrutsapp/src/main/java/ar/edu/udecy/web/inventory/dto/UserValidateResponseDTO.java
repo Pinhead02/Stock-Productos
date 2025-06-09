@@ -5,11 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Set;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponseDTO {
+public class UserValidateResponseDTO {
     private String username;
     private Set<String> roles;
+    private String token;
 }

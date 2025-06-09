@@ -1,42 +1,68 @@
 package ar.edu.udecy.web.inventory.service.impl;
-import ar.edu.udecy.web.inventory.config.JwtUtil;
 
+import ar.edu.udecy.web.inventory.dto.UserRequestDTO;
 import ar.edu.udecy.web.inventory.dto.UserResponseDTO;
 import ar.edu.udecy.web.inventory.entity.UserEntity;
-import ar.edu.udecy.web.inventory.handler.exception.InvalidCredentialsException;
+import ar.edu.udecy.web.inventory.handler.exception.UserNotFoundException;
 import ar.edu.udecy.web.inventory.repository.UserRepository;
 import ar.edu.udecy.web.inventory.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.AuthorizationServiceException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private  UserRepository userRepository;
-    @Autowired
-    private JwtUtil jwtUtil;
+    private final UserRepository userRepository;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
-    public UserResponseDTO isValidUser(String username, String password) {
-        // Fetch user from the database
-        Optional<UserEntity> user = userRepository.findByUsername(username);
+    public UserResponseDTO createUser(UserRequestDTO userRequestDTO) {
+        UserEntity savedUser = userRepository.save(UserEntity.builder().username(userRequestDTO.getUsername())
+                .password(userRequestDTO.getPassword())
+                .roles(userRequestDTO.getRoles())
+                .build());
+        return mapToResponseDTO(savedUser);
+    }
 
-        // Validate user existence and password
-         boolean validateUser = user.isPresent() && user.get().getPassword().equals(password);
+    @Override
+    public UserResponseDTO getUserById(Long id) {
+        UserEntity user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + id));
+        return mapToResponseDTO(user);
+    }
 
-        // Validate user credentials
-        if (!validateUser) {
-            throw new InvalidCredentialsException("Invalid username or password");
+    @Override
+    public List<UserResponseDTO> getAllUsers() {
+        return userRepository.findAll().stream()
+                .map(this::mapToResponseDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public UserResponseDTO updateUser(Long id, UserRequestDTO userRequestDTO) {
+        UserEntity user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + id));
+        user.setUsername(userRequestDTO.getUsername());
+        user.setPassword(userRequestDTO.getPassword());
+        user.setRoles(userRequestDTO.getRoles());
+        UserEntity updatedUser = userRepository.save(user);
+        return mapToResponseDTO(updatedUser);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new UserNotFoundException("User not found with ID: " + id);
         }
+        userRepository.deleteById(id);
+    }
 
-        // Generate JWT token
-        String token = jwtUtil.generateToken(username);
-
-        // Return user details with token
-        return new UserResponseDTO(username, token);
+    private UserResponseDTO mapToResponseDTO(UserEntity user) {
+        return new UserResponseDTO(user.getUsername(), user.getRoles());
     }
 }

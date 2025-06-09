@@ -3,7 +3,8 @@ package ar.edu.udecy.web.inventory.controller.impl;
 import ar.edu.udecy.web.inventory.config.JwtUtil;
 import ar.edu.udecy.web.inventory.dto.UserRequestDTO;
 import ar.edu.udecy.web.inventory.dto.UserResponseDTO;
-import ar.edu.udecy.web.inventory.service.UserService;
+import ar.edu.udecy.web.inventory.dto.UserValidateResponseDTO;
+import ar.edu.udecy.web.inventory.service.UserValidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,11 +17,11 @@ public class LoginController {
     private JwtUtil jwtUtil;
 
     @Autowired
-    private UserService userService;
+    private UserValidateService userValidateService;
 
     @PostMapping("login")
-    public UserResponseDTO login(@RequestBody UserRequestDTO userRequestDTO) {
+    public UserValidateResponseDTO login(@RequestBody UserRequestDTO userRequestDTO) {
 
-        return userService.isValidUser(userRequestDTO.getUsername(), userRequestDTO.getPassword());
+        return userValidateService.isValidUser(userRequestDTO.getUsername(), userRequestDTO.getPassword());
     }
 }

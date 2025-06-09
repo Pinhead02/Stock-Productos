@@ -15,16 +15,23 @@ INSERT INTO product (product_id, product_name, sku, unit_of_measure, cost, sale_
 VALUES ('P001', 'Product A', 'SKU001', 'Unit', 50.00, 75.00, 'Category A', 'Location A', TRUE),
        ('P002', 'Product B', 'SKU002', 'Unit', 100.00, 150.00, 'Category B', 'Location B', TRUE);
 
--- Schema for the users table
 CREATE TABLE users (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL
 );
 
--- Insert two users
-INSERT INTO users (username, password) VALUES ('user1', 'password1');
-INSERT INTO users (username, password) VALUES ('user2', 'password2');
+CREATE TABLE user_roles (
+    user_id BIGINT NOT NULL,
+    role VARCHAR(255) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+INSERT INTO users (username, password) VALUES ('admin', 'admin123');
+INSERT INTO users (username, password) VALUES ('user', 'user123');
+
+INSERT INTO user_roles (user_id, role) VALUES (1, 'ROLE_ADMIN');
+INSERT INTO user_roles (user_id, role) VALUES (2, 'USER');
 
 -- Schema for current_stock table
 CREATE TABLE current_stock (
